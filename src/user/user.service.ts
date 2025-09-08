@@ -8,7 +8,7 @@ import { User, UserDocument } from './user.schema';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async createUser(data: Partial<User>): Promise<User> {
+  async createUser(data: Partial<User>): Promise<UserDocument> {
     const hashedPassword = await bcrypt.hash(data.password!, 10);
 
     const newUser = new this.userModel({
