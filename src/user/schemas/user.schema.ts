@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Settings, SettingsSchema } from './user.settingsSchema';
 
 export type UserDocument = User & Document;
 
@@ -47,18 +48,8 @@ export class User {
   @Prop([String])
   deviceTokens?: string[];
 
-  @Prop({
-    default: {
-      notifications: true,
-      darkMode: false,
-      language: 'en',
-    },
-  })
-  settings?: {
-    notifications: boolean;
-    darkMode: boolean;
-    language: string;
-  };
+  @Prop({ type: SettingsSchema, default: {} })
+  settings: Settings;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
