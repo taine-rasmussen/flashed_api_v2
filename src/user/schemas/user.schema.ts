@@ -4,7 +4,7 @@ import { Settings, SettingsSchema } from './user.settingsSchema';
 
 export type UserDocument = User & Document;
 
-@Schema({ timestamps: true })
+@Schema({ collection: 'users', timestamps: true })
 export class User {
   @Prop({ required: true })
   firstName: string;

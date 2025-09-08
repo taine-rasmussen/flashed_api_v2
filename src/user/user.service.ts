@@ -13,9 +13,15 @@ export class UserService {
 
     const newUser = new this.userModel({
       ...data,
+      email: data.email!.trim().toLowerCase(),
       password: hashedPassword,
     });
 
     return newUser.save();
+  }
+
+  async getUser(email: string): Promise<UserDocument | null> {
+    const normalizedEmail = email.trim().toLowerCase();
+    return this.userModel.findOne({ email: normalizedEmail }).exec();
   }
 }
