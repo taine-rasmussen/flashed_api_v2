@@ -8,6 +8,6 @@ async function bootstrap() {
     origin: '*', 
   });
 
-  await app.listen(process.env.PORT ?? 3000, '0.0.0.0'); // 👈 important
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
 bootstrap();
