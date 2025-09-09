@@ -24,4 +24,16 @@ export class UserService {
     const normalizedEmail = email.trim().toLowerCase();
     return this.userModel.findOne({ email: normalizedEmail }).exec();
   }
+
+  async findByEmail(email: string): Promise<UserDocument | null> {
+    return this.userModel.findOne({ email }).exec();
+  }
+
+  async findById(id: string): Promise<UserDocument | null> {
+    return this.userModel.findById(id).exec();
+  }
+
+  async updateRefreshToken(userId: string, refreshToken: string | null): Promise<void> {
+    await this.userModel.findByIdAndUpdate(userId, { refreshToken });
+  }
 }
