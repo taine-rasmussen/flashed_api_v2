@@ -48,6 +48,9 @@ export class User {
   @Prop([String])
   deviceTokens?: string[];
 
+  @Prop([String])
+  refreshToken?: string
+
   @Prop({ type: SettingsSchema, default: {} })
   settings: Settings;
 }
