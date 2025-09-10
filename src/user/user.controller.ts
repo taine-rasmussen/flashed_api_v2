@@ -6,14 +6,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('create')
   async createUser(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.createUser(createUserDto);
     const { password, ...result } =  user.toJSON();
     return result;
   }
 
-  @Get()
+  @Get('by-email')
   async getUser(@Query('email') email: string) {
     if (!email) {
       throw new NotFoundException('Email query parameter is required');
